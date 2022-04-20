@@ -1,25 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.sass';
+import {BrowserRouter as Router, Link} from "react-router-dom";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Router>
+    <div id="links-container" role="links-container">
+      <Link to="/specific-coin" className="link" role="specific-coin-container">
+      Search A Specific Coin
+      </Link>
+      
+      <div className="link" >
+        All Coins
+      </div>
+
+      <div className="link">
+        History
+      </div>
     </div>
+    </Router>
+
   );
 }
 
