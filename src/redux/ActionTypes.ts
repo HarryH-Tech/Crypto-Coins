@@ -1,0 +1,2 @@
+export const GET_SPECIFIC_CRYPTO = "GET_SPECIFIC_CRYPTO"
+export const ERROR = "ERROR"
