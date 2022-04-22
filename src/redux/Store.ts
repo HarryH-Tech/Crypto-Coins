@@ -5,14 +5,9 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import rootReducer from './Reducer'
 
 const initialState = {
-specificCoinData: {
-    name: "",
-    market_cap_rank: "",
-    genesis_date: ""
-}
- 
 
-
+    specificCoinData: "",
+    companyHoldings: ""
 }
 
 const middleware = [thunk]

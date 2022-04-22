@@ -1,7 +1,11 @@
+@import '~antd/dist/antd.css';
+
+
+
 #container {
     display: flex;
 
     .link {
         border: 2px solid red;
-        }
+    }
 }

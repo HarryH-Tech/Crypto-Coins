@@ -1,0 +1,87 @@
+@import "Mixins.scss";
+
+#select-box-container {
+    margin: auto;
+    text-align: center;
+
+    #select-element {
+        padding: 0.4rem;
+        border-radius: 0.8rem;
+        text-align: center;
+    }
+}
+
+
+#data-container {
+    #coin-name {
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    #other-data-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+
+    }
+
+
+    #meta-data-container {
+        text-align: center;
+        @include data-container-mixin;
+    }
+
+    #dev-data-container {
+        text-align: center;
+        @include data-container-mixin;
+    }
+
+    #description {
+        text-align: justify;
+        text-align-last: center;
+        width: 70%;
+        margin: auto;
+    }
+
+
+
+}
+
+
+
+#companies-button-container {
+    text-align: center;
+    margin: 3rem auto;
+
+    #companies-button {
+        @include button;
+    }
+}
+
+
+#company-holdings-container {
+    margin: auto;
+    display: flex;
+    gap: 2rem;
+
+    flex-shrink: 0;
+    flex-flow: row wrap;
+
+    justify-content: center;
+    align-items: center;
+
+    padding: 2rem;
+
+    #company-container {
+        text-align: center;
+        border: 2px solid #aafffb;
+        padding: 0.5rem;
+        border-radius: 0.8rem;
+    }
+}
+
+
+.label {
+    font-weight: bold;
+}
