@@ -1,0 +1,28 @@
+#title {
+    text-align: center;
+    text-decoration: underline;
+}
+
+#all-coins-table {
+    text-align: center;
+    border: 1px solid rgb(212, 233, 240);
+    border-collapse: collapse;
+    margin: auto;
+
+    caption {
+        caption-side: top;
+        text-align: center;
+    }
+
+    th,
+    td {
+        border: 1px solid rgb(212, 233, 240);
+        border-collapse: collapse;
+        padding: 0.3rem;
+    }
+
+    tr:hover {
+        background-color: rgb(159, 229, 255);
+    }
+
+}
