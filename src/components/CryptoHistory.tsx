@@ -1,5 +1,7 @@
 import * as React from "react";
 
-export function App() {
-  return <div></div>;
+function CryptoHistory() {
+  return <div>HISOTRY</div>;
 }
+
+export default CryptoHistory;

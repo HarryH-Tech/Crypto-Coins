@@ -9,6 +9,7 @@ const rootReducer = (state: any, action: any) => {
         specificCoinData: action.payload,
         companyHoldings: "",
       };
+
     case actionTypes.GET_COMPANY_HOLDINGS:
       console.log(state);
       return {

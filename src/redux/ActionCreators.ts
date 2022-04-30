@@ -50,7 +50,7 @@ export const getAllCryptos =
   () => async (dispatch: (arg0: { type: string; payload: any }) => void) => {
     try {
       const res = await axios.get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=20&page=1&sparkline=false"
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=50&page=1&sparkline=false"
       );
 
       console.log(res);

@@ -1,14 +1,13 @@
 import { useState } from "react";
+import "../styles/Pagination.scss";
 
-function Pagination({
-  data,
-  RenderComponent,
-  title,
-  pageLimit,
-  dataLimit,
-}: any) {
+function Pagination({ data, RenderComponent, pageLimit, dataLimit }: any) {
   const [pages] = useState(Math.round(data.length / dataLimit));
   const [currentPage, setCurrentPage] = useState(1);
+
+  // 2 variables below used to map through and render data at the correct rate
+  const startIndex = currentPage * dataLimit - dataLimit;
+  const endIndex = startIndex + dataLimit;
 
   function goToNextPage() {
     setCurrentPage((page) => page + 1);
@@ -23,12 +22,6 @@ function Pagination({
     setCurrentPage(pageNumber);
   }
 
-  const getPaginatedData = () => {
-    const startIndex = currentPage * dataLimit - dataLimit;
-    const endIndex = startIndex + dataLimit;
-    return data.slice(startIndex, endIndex);
-  };
-
   const getPaginationGroup = () => {
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
     return new Array(pageLimit).fill(0).map((_, idx) => start + idx + 1);
@@ -37,25 +30,45 @@ function Pagination({
   return (
     <>
       <div>
-        <h1>{title}</h1>
+        <table
+          summary="Information about the top 20 most valuable cryptos"
+          id="all-coins-table"
+        >
+          <caption>
+            All prices below are in British Pounds with the coins listed by
+            market cap in descending order.
+          </caption>
 
-        {/* show the posts, 10 posts at a time */}
-        <div className="dataContainer">
-          {getPaginatedData().map((d: any, idx: any) => (
-            <RenderComponent key={idx} data={d} />
-          ))}
-        </div>
+          <div className="dataContainer">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>All Time High</th>
+                <th>Current Price</th>
+                <th>
+                  Max Supply <br />
+                  (if applicable)
+                </th>
+                <th>Market Cap</th>
+                <th>Fully Diluted Valuation</th>
+              </tr>
+            </thead>
+            {/* show the cryptos and their corresponding
+             info, 10 at a time */}
+            {data &&
+              data
+                .slice(startIndex, endIndex)
+                .map((d: any, idx: any) => (
+                  <RenderComponent key={idx} data={d} />
+                ))}
+          </div>
+        </table>
 
-        {/* show the pagiantion
-        it consists of next and previous buttons
-        along with page numbers, in our case, 5 page
-        numbers at a time
-    */}
-        <div className="pagination">
-          {/* previous button */}
+        <div className="pagination-container">
           <button
             onClick={goToPreviousPage}
-            className={`prev ${currentPage === 1 ? "disabled" : ""}`}
+            disabled={currentPage === 1}
+            className="pagination-button"
           >
             prev
           </button>
@@ -65,18 +78,16 @@ function Pagination({
             <button
               key={index}
               onClick={changePage}
-              className={`paginationItem ${
-                currentPage === item ? "active" : null
-              }`}
+              className="pagination-button"
             >
               <span>{item}</span>
             </button>
           ))}
 
-          {/* next button */}
           <button
             onClick={goToNextPage}
-            className={`next ${currentPage === pages ? "disabled" : ""}`}
+            disabled={currentPage === 5}
+            className="pagination-button"
           >
             next
           </button>
