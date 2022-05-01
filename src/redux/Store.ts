@@ -8,6 +8,7 @@ const initialState = {
   specificCoinData: "",
   companyHoldings: "",
   allCryptos: "",
+  loading: false,
 };
 
 const middleware = [thunk];

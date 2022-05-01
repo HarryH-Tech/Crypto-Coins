@@ -1,13 +1,13 @@
+@import "./App.scss";
+@import "./Mixins.scss";
+
 #title {
     text-align: center;
     text-decoration: underline;
 }
 
 #all-coins-table {
-    text-align: center;
-    border: 1px solid rgb(212, 233, 240);
-    border-collapse: collapse;
-    margin: auto;
+    @include table-mixin;
 
     caption {
         caption-side: top;
@@ -31,30 +31,44 @@
 .pagination-container {
     text-align: center;
 
-    .pagination-button {
-        border: 1px solid rgb(255, 155, 135);
-        ;
+    .pagination-direction-button {
         color: white;
         font-weight: bold;
         border-radius: 0.2rem;
-        background-color: rgb(255, 155, 135);
-        padding: 0.4rem;
-        width: 4rem;
+        font-size: 1.5rem;
+        background-color: black;
+        padding: 0.1rem;
+        width: 3rem;
         cursor: pointer;
         margin: 1rem;
-
-
-
-
-
     }
 
 
     :disabled {
-        color: red;
+        opacity: 0.5;
+        cursor: auto;
     }
 
-    :active {
-        color: green;
+
+
+}
+
+.pagination-number-button-container {
+    text-align: center;
+
+    .pagination-number-button {
+        height: 10px;
+        width: 1px;
+        border-radius: 50%;
+        display: inline-block;
+        margin: auto 1rem;
+        text-align: center;
+        background-color: $pagination-dot-color;
+        border-color: $pagination-dot-color
+    }
+
+    .active {
+        background-color: rgb(0, 255, 0);
+        border-color: rgb(0, 255, 0);
     }
 }

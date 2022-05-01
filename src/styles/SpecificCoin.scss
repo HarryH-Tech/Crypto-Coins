@@ -56,17 +56,6 @@
 
 
 
-#companies-button-container {
-    text-align: center;
-    margin: 3rem auto;
-
-    #companies-button {
-        @include button;
-        margin-bottom: 1rem;
-    }
-}
-
-
 #company-holdings-container {
     margin: auto;
     display: flex;
@@ -91,4 +80,9 @@
 
 .label {
     font-weight: bold;
+}
+
+
+#company-holdings-table {
+    @include table-mixin;
 }

@@ -6,8 +6,9 @@ function Header() {
   return (
     <>
       <div id="navbar" role="navbar">
-        <h1 id="title-container">CRYPTO INFO</h1>
-
+        <Link to="/">
+          <h1 id="title-container">CRYPTO INFO</h1>
+        </Link>
         <ul className="links-container">
           <li>
             <Link
@@ -20,7 +21,7 @@ function Header() {
           </li>
           <li>
             <Link to="/all-coins" className="link" role="all-coins-link">
-              All Coins
+              Top 50 Coins
             </Link>
           </li>
           <li>

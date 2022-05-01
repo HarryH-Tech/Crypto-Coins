@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import "../styles/SpecificCoin.scss";
 import NumberFormat from "react-number-format";
+import Loading from "./Loading";
 
 import {
   fetchSpecificCoinData,
@@ -11,6 +12,7 @@ import {
 const SpecificCoin = (props: any) => {
   const handleSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     props.fetchSpecificCoinData(event.target.value);
+    props.getCompanyHoldings(props.specificCoinData.cryptoName);
   };
 
   // Prevent anchor tags from appearing in text as a string of the anchor tag
@@ -20,12 +22,10 @@ const SpecificCoin = (props: any) => {
     return match;
   };
 
-  const handleGetCompanyHoldings = () => {
-    props.getCompanyHoldings(props.specificCoinData.cryptoName);
-  };
-
   useEffect(() => {
     props.fetchSpecificCoinData("bitcoin");
+    props.getCompanyHoldings("bitcoin");
+    console.log(props);
   }, []);
 
   const specificCoinData = props.specificCoinData;
@@ -45,7 +45,9 @@ const SpecificCoin = (props: any) => {
           <option value="solana">Solana</option>
         </select>
       </div>
-      {specificCoinData ? (
+
+      {props.loading && <Loading />}
+      {specificCoinData && (
         <div id="data-container">
           <h2 id="coin-name">{specificCoinData.data.name}</h2>
 
@@ -103,25 +105,19 @@ const SpecificCoin = (props: any) => {
                 <>
                   <h3>Developer Data</h3>
                   <p>
-                    {" "}
                     <span className="label">Closed Github Issues:</span>{" "}
                     {specificCoinData.data.developer_data.closed_issues}
                   </p>
                   <p>
-                    {" "}
                     <span className="label">Github Forks:</span>{" "}
                     {specificCoinData.data.developer_data.forks}
                   </p>
                   <p>
-                    {" "}
                     <span className="label">Github Stars:</span>{" "}
                     {specificCoinData.data.developer_data.stars}
                   </p>
                   <p>
-                    {" "}
-                    <span className="label">
-                      Github Pull Requests Merged:
-                    </span>{" "}
+                    <span className="label">Github Pull Requests Merged:</span>{" "}
                     {specificCoinData.data.developer_data.pull_requests_merged}
                   </p>
                   <p>
@@ -137,34 +133,28 @@ const SpecificCoin = (props: any) => {
             {specificCoinData.data.description &&
               URLReplacer(specificCoinData.data.description.en)}
           </p>
-          <div id="companies-button-container">
-            <button id="companies-button" onClick={handleGetCompanyHoldings}>
-              See Which Companies hold{" "}
-              {specificCoinData.cryptoName.charAt(0).toUpperCase() +
-                specificCoinData.cryptoName.slice(1)}
-            </button>
-          </div>
         </div>
-      ) : (
-        ""
       )}
+      <br />
       {companyHoldings && (
-        <div id="company-holdings-container">
+        <table id="company-holdings-table">
+          <tr>
+            <th>Company Name</th>
+            <th>Value of Holdings (US $)</th>
+            <th>Percentage of Total Supply Held</th>
+            <th>Country of Origin</th>
+          </tr>
           {companyHoldings.companies.map((company: any) => (
             <>
-              <div id="company-container">
-                <h3>{company.name}</h3>
-                <p>
-                  <span className="label">Holding Value: </span> $
-                  {company.total_current_value_usd}
-                </p>
-                <p>
-                  <span className="label"> Country:</span> {company.country}
-                </p>
-              </div>
+              <tr>
+                <td>{company.name}</td>
+                <td>{company.total_current_value_usd}</td>
+                <td>{company.percentage_of_total_supply}</td>
+                <td>{company.country}</td>
+              </tr>
             </>
           ))}
-        </div>
+        </table>
       )}
     </>
   );
@@ -173,6 +163,7 @@ const SpecificCoin = (props: any) => {
 const mapStateToProps = (state: any) => ({
   specificCoinData: state.specificCoinData,
   companyHoldings: state.companyHoldings,
+  loading: state.loading,
 });
 
 export default connect(mapStateToProps, {

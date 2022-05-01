@@ -23,3 +23,10 @@
         transform: translateY(2px);
     }
 }
+
+@mixin table-mixin {
+    text-align: center;
+    border: 1px solid rgb(212, 233, 240);
+    border-collapse: collapse;
+    margin: auto;
+}

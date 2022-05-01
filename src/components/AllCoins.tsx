@@ -4,6 +4,7 @@ import { getAllCryptos } from "../redux/ActionCreators";
 import NumberFormat from "react-number-format";
 
 import Pagination from "./Pagination";
+import Loading from "./Loading";
 
 function AllCoins(props: any) {
   useEffect(() => {
@@ -76,15 +77,21 @@ function AllCoins(props: any) {
 
   return (
     <>
-      <h1 id="title">All Coins</h1>
+      {props.allCryptos ? (
+        <>
+          <h1 id="title">All Coins</h1>
 
-      <Pagination
-        data={props.allCryptos}
-        RenderComponent={coin}
-        title="Coins"
-        pageLimit={5}
-        dataLimit={10}
-      />
+          <Pagination
+            data={props.allCryptos}
+            RenderComponent={coin}
+            title="Coins"
+            pageLimit={5}
+            dataLimit={10}
+          />
+        </>
+      ) : (
+        <Loading />
+      )}
     </>
   );
 }

@@ -1,0 +1,15 @@
+projects:
+  Crypto:
+    schemaPath: src/graphql/schema.json
+    includes:
+      - src/graphql/**/*.ts
+    excludes:
+      - ./amplify/**
+    extensions:
+      amplify:
+        codeGenTarget: typescript
+        generatedFileName: src/API.ts
+        docsFilePath: src/graphql
+        region: eu-west-1
+        apiId: pldtj4pk2ngknpgbenx2qlyocq
+        maxDepth: 2

@@ -1,4 +1,5 @@
 export const GET_SPECIFIC_CRYPTO = "GET_SPECIFIC_CRYPTO";
 export const GET_COMPANY_HOLDINGS = "GET_COMPANY_HOLDINGS";
 export const GET_ALL_CRYPTOS = "GET_ALL_CRYPTOS";
-export const ERROR = "ERROR";
+export const SET_ERROR = "SET_ERROR";
+export const SET_LOADING = "SET_LOADING";

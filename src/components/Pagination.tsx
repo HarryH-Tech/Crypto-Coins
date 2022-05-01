@@ -2,7 +2,6 @@ import { useState } from "react";
 import "../styles/Pagination.scss";
 
 function Pagination({ data, RenderComponent, pageLimit, dataLimit }: any) {
-  const [pages] = useState(Math.round(data.length / dataLimit));
   const [currentPage, setCurrentPage] = useState(1);
 
   // 2 variables below used to map through and render data at the correct rate
@@ -63,33 +62,36 @@ function Pagination({ data, RenderComponent, pageLimit, dataLimit }: any) {
                 ))}
           </div>
         </table>
+        <br />
 
-        <div className="pagination-container">
-          <button
-            onClick={goToPreviousPage}
-            disabled={currentPage === 1}
-            className="pagination-button"
-          >
-            prev
-          </button>
-
+        <div className="pagination-number-button-container">
           {/* show page numbers */}
           {getPaginationGroup().map((item, index) => (
             <button
               key={index}
               onClick={changePage}
-              className="pagination-button"
-            >
-              <span>{item}</span>
-            </button>
+              className={`${
+                currentPage === item ? "active" : ""
+              } number pagination-number-button`}
+            ></button>
           ))}
+        </div>
+
+        <div className="pagination-container">
+          <button
+            onClick={goToPreviousPage}
+            disabled={currentPage === 1}
+            className="pagination-direction-button"
+          >
+            &#8592;
+          </button>
 
           <button
             onClick={goToNextPage}
             disabled={currentPage === 5}
-            className="pagination-button"
+            className="pagination-direction-button"
           >
-            next
+            &#8594;
           </button>
         </div>
       </div>
