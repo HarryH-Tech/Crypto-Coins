@@ -135,7 +135,7 @@ const SpecificCoin = (props: any) => {
           <thead>
             <tr>
               <th>Company Name</th>
-              <th>Value of Holdings (US $)</th>
+              <th>Value of Holdings</th>
               <th>Percentage of Total Supply Held</th>
               <th>Country of Origin</th>
             </tr>
@@ -146,7 +146,14 @@ const SpecificCoin = (props: any) => {
                 <tr>
                   <td key={company.name}>{company.name}</td>
                   <td key={company.total_current_value_usd}>
-                    {company.total_current_value_usd}
+                    {
+                      <NumberFormat
+                        displayType="text"
+                        value={company.total_current_value_usd}
+                        thousandSeparator={true}
+                        prefix={"$"}
+                      />
+                    }
                   </td>
                   <td key={company.percentage_of_total_supply}>
                     {company.percentage_of_total_supply}

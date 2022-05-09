@@ -19,6 +19,11 @@ const rootReducer = (state: any, action: any) => {
         ...state,
         loading: action.payload,
       };
+    case actionTypes.EXPLORE_BLOCKCHAIN:
+      return {
+        ...state,
+        blockchainInfo: action.payload,
+      };
   }
   return state;
 };

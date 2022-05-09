@@ -6,7 +6,7 @@ import Home from "./components/Home";
 
 import SpecificCoin from "./components/SpecificCoin";
 import AllCoins from "./components/AllCoins";
-import CryptoHistory from "./components/CryptoHistory";
+import BlockchainExplorer from "./components/BlockchainExplorer";
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
 
         <Route path="/specific-coin" element={<SpecificCoin />} />
         <Route path="/all-coins" element={<AllCoins />} />
-        <Route path="/crypto-history" element={<CryptoHistory />} />
+        <Route path="/crypto-history" element={<BlockchainExplorer />} />
       </Routes>
     </Router>
   );

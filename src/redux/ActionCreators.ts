@@ -6,6 +6,7 @@ const {
   GET_ALL_CRYPTOS,
   SET_LOADING,
   SET_ERROR,
+  EXPLORE_BLOCKCHAIN,
 } = ActionTypes;
 
 export const setLoading =
@@ -45,7 +46,7 @@ export const fetchSpecificCoinData =
         .get(
           `https://api.coingecko.com/api/v3/companies/public_treasury/${cryptoName}`
         )
-        .catch((err) => {
+        .catch(() => {
           dispatch({
             type: SET_ERROR,
             payload:
@@ -96,6 +97,59 @@ export const getAllCryptos =
       dispatch({
         type: SET_ERROR,
         payload: console.log(error),
+      });
+      dispatch({
+        type: SET_LOADING,
+        payload: false,
+      });
+    }
+  };
+
+export const exploreBlockchain =
+  () => async (dispatch: (arg0: { type: string; payload: any }) => void) => {
+    dispatch({
+      type: SET_LOADING,
+      payload: true,
+    });
+    console.log("hi");
+    try {
+      const query = `
+    query{
+    bitcoin{
+      blocks{
+        count
+      }
+     }
+  }
+  `;
+      const url: string =
+        "https://" + process.env.REACT_APP_BLOCKCHAIN_EXPLORER_API_URL!;
+      const opts = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-API-KEY": "BQYYJCYwrOg7YXugj0wUip86707MTx5U", //process.env.REACT_APP_BLOCKCHAIN_EXPLORER_API_KEY,
+        },
+        body: JSON.stringify({
+          query,
+        }),
+      };
+
+      console.log(process.env.REACT_APP_BLOCKCHAIN_EXPLORER_API_KEY);
+      const res = await axios.post("https://graphql.bitquery.io/", opts);
+      console.log(res);
+      dispatch({
+        type: EXPLORE_BLOCKCHAIN,
+        payload: "res.data",
+      });
+      dispatch({
+        type: SET_LOADING,
+        payload: false,
+      });
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: error,
       });
       dispatch({
         type: SET_LOADING,

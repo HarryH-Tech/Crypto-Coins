@@ -7,7 +7,9 @@ import rootReducer from "./Reducer";
 const initialState = {
   specificCoinData: "",
   allCryptos: "",
+  blockchainInfo: "",
   loading: false,
+  error: "",
 };
 
 const middleware = [thunk];
