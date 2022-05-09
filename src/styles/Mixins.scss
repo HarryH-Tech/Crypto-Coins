@@ -29,4 +29,11 @@
     border: 1px solid rgb(212, 233, 240);
     border-collapse: collapse;
     margin: auto;
+    padding: 0.6rem;
+}
+
+@mixin td-mixin {
+    border: 1px solid rgb(212, 233, 240);
+    border-collapse: collapse;
+    padding: 0.3rem;
 }

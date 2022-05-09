@@ -6,7 +6,6 @@ import rootReducer from "./Reducer";
 
 const initialState = {
   specificCoinData: "",
-  companyHoldings: "",
   allCryptos: "",
   loading: false,
 };

@@ -2,7 +2,7 @@ import axios from "axios";
 import * as ActionTypes from "./ActionTypes";
 const {
   GET_SPECIFIC_CRYPTO,
-  GET_COMPANY_HOLDINGS,
+
   GET_ALL_CRYPTOS,
   SET_LOADING,
   SET_ERROR,
@@ -11,7 +11,6 @@ const {
 export const setLoading =
   (loadingStatus: boolean) =>
   async (dispatch: (arg0: { type: string; payload: any }) => void) => {
-    console.log(loadingStatus);
     try {
       dispatch({
         type: SET_LOADING,
@@ -32,17 +31,31 @@ export const fetchSpecificCoinData =
       type: SET_LOADING,
       payload: true,
     });
-    try {
-      const res = await axios.get(
-        `https://api.coingecko.com/api/v3/coins/${cryptoName}`
-      );
 
-      // If res.data is called directly in payload object in dispatch it causes an error
-      // so call here, set to data variable then put in payload
-      const data = res.data;
+    try {
+      const coinDataRes = await axios
+        .get(`https://api.coingecko.com/api/v3/coins/${cryptoName}`)
+        .catch((err) => {
+          dispatch({
+            type: SET_ERROR,
+            payload: "Sorry there was an error, please try again later.",
+          });
+        });
+      const companyHoldingsRes = await axios
+        .get(
+          `https://api.coingecko.com/api/v3/companies/public_treasury/${cryptoName}`
+        )
+        .catch((err) => {
+          dispatch({
+            type: SET_ERROR,
+            payload:
+              "No Company Holdings Data Available For This Cryptocurrency.",
+          });
+        });
+
       dispatch({
         type: GET_SPECIFIC_CRYPTO,
-        payload: { data, cryptoName },
+        payload: { coinDataRes, companyHoldingsRes },
       });
       dispatch({
         type: SET_LOADING,
@@ -51,31 +64,11 @@ export const fetchSpecificCoinData =
     } catch (error) {
       dispatch({
         type: SET_ERROR,
-        payload: console.log(error),
+        payload: error,
       });
       dispatch({
         type: SET_LOADING,
         payload: false,
-      });
-    }
-  };
-
-export const getCompanyHoldings =
-  (cryptoName: string) =>
-  async (dispatch: (arg0: { type: string; payload: any }) => void) => {
-    try {
-      const res = await axios.get(
-        `https://api.coingecko.com/api/v3/companies/public_treasury/${cryptoName}`
-      );
-      console.log(res);
-      dispatch({
-        type: GET_COMPANY_HOLDINGS,
-        payload: res.data,
-      });
-    } catch (error) {
-      dispatch({
-        type: SET_ERROR,
-        payload: console.log(error),
       });
     }
   };

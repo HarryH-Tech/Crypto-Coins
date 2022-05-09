@@ -16,13 +16,11 @@
 
     th,
     td {
-        border: 1px solid rgb(212, 233, 240);
-        border-collapse: collapse;
-        padding: 0.3rem;
+        @include td-mixin;
     }
 
     tr:hover {
-        background-color: rgb(159, 229, 255);
+        background-color: rgba(0, 0, 0, 0.277);
     }
 
 }
