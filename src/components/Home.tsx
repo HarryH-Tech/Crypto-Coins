@@ -12,21 +12,27 @@ function Home() {
           <Link className="home-link" to="specific-coin">
             Specific Coin
           </Link>
-          <p>Search for information about a specific cryptocurrency</p>
+          <p>Search for information about a specific cryptocurrency.</p>
         </div>
 
         <div className="content">
           <Link className="home-link" to="all-coins">
             Top 50 Coins
           </Link>
-          <p>Search for information about a specific cryptocurrency</p>
+          <p>
+            See information about the top 50 cryptocurrencies by market cap
+            including their all time high, current price and max supply.
+          </p>
         </div>
 
         <div className="content">
           <Link className="home-link" to="crypto-history">
-            Crypto History
+            Blockchain History
           </Link>
-          <p>Search for information about a specific cryptocurrency</p>
+          <p>
+            Find out more about the history of blockchains, their development
+            and their potential impact in the future.{" "}
+          </p>
         </div>
       </div>
     </>
