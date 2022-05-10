@@ -113,15 +113,7 @@ export const exploreBlockchain =
     });
     console.log("hi");
     try {
-      const query = `
-    query{
-    bitcoin{
-      blocks{
-        count
-      }
-     }
-  }
-  `;
+      const query = `query{bitcoin{blocks{count}}}`;
       const url: string =
         "https://" + process.env.REACT_APP_BLOCKCHAIN_EXPLORER_API_URL!;
       const opts = {
