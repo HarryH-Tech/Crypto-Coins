@@ -1,4 +1,4 @@
-import "../styles/Home.scss";
+import "../assets/styles/Home.scss";
 import { Link } from "react-router-dom";
 
 function Home() {

@@ -5,6 +5,7 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import rootReducer from "./Reducer";
 
 const initialState = {
+  sidebarMenuShowing: false,
   specificCoinData: "",
   allCryptos: "",
   blockchainInfo: "",

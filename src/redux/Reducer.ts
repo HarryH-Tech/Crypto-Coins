@@ -2,6 +2,11 @@ import * as actionTypes from "./ActionTypes";
 
 const rootReducer = (state: any, action: any) => {
   switch (action.type) {
+    case actionTypes.TOGGLE_SIDEBAR_MENU:
+      return {
+        ...state,
+        sidebarMenuShowing: action.payload,
+      };
     case actionTypes.GET_SPECIFIC_CRYPTO:
       return {
         ...state,

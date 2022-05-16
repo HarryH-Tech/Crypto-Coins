@@ -1,7 +1,28 @@
 import axios from "axios";
 import * as ActionTypes from "./ActionTypes";
-const { GET_SPECIFIC_CRYPTO, GET_ALL_CRYPTOS, SET_LOADING, SET_ERROR } =
-  ActionTypes;
+const {
+  TOGGLE_SIDEBAR_MENU,
+  GET_SPECIFIC_CRYPTO,
+  GET_ALL_CRYPTOS,
+  SET_LOADING,
+  SET_ERROR,
+} = ActionTypes;
+
+export const toggleSidebarMenu =
+  (sidebarMenuStatus: boolean) =>
+  async (dispatch: (arg0: { type: string; payload: any }) => void) => {
+    try {
+      dispatch({
+        type: TOGGLE_SIDEBAR_MENU,
+        payload: !sidebarMenuStatus,
+      });
+    } catch (error) {
+      dispatch({
+        type: SET_ERROR,
+        payload: console.log(error),
+      });
+    }
+  };
 
 export const setLoading =
   (loadingStatus: boolean) =>

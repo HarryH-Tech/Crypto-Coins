@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
-import "../styles/SpecificCoin.scss";
+import "../assets/styles/SpecificCoin.scss";
 import NumberFormat from "react-number-format";
+import { v4 as uuid } from "uuid";
 import Loading from "./Loading";
-
 import { fetchSpecificCoinData } from "../redux/ActionCreators";
+
+const id: string = uuid();
 
 const SpecificCoin = (props: any) => {
   const handleSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -20,7 +22,6 @@ const SpecificCoin = (props: any) => {
 
   useEffect(() => {
     props.fetchSpecificCoinData("bitcoin");
-    console.log(props);
   }, []);
 
   const specificCoin = props.specificCoinData.coinDataRes;
@@ -142,7 +143,7 @@ const SpecificCoin = (props: any) => {
           </thead>
           {companyHoldings.data.companies.map((company: any) => (
             <>
-              <tbody>
+              <tbody key={id}>
                 <tr>
                   <td key={company.name}>{company.name}</td>
                   <td key={company.total_current_value_usd}>

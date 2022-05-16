@@ -1,9 +1,15 @@
-import "../styles/History.scss";
+import "../assets/styles/History.scss";
+import Timeline from "../assets/Timeline.jpg";
 
-function History(props: any) {
+function History() {
   return (
     <div>
       <h1 id="title">A Short History of Blockchains</h1>
+      <img
+        src={Timeline}
+        alt="Blockchain History Timeline"
+        id="timeline-image"
+      />
       <p id="history-text">
         The concept of a blockchain has been around for decades, first being
         described by David Chaum in his 1982 dissertation{" "}
@@ -48,7 +54,7 @@ function History(props: any) {
         <br />
         One of the major innovations relating to blockchain technology was the
         concept of the "smart contract" embodied within a second generation
-        blockchain system known as
+        blockchain system known as{" "}
         <a href="https://en.wikipedia.org/wiki/Ethereum" target="_blank">
           Ethereum
         </a>

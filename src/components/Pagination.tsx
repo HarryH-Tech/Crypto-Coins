@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/Pagination.scss";
+import "../assets/styles/Pagination.scss";
 
 function Pagination({ data, RenderComponent, pageLimit, dataLimit }: any) {
   const [currentPage, setCurrentPage] = useState(1);
