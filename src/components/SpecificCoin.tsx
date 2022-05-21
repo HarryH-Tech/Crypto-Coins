@@ -11,6 +11,7 @@ const id: string = uuid();
 const SpecificCoin = (props: any) => {
   const handleSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     props.fetchSpecificCoinData(event.target.value);
+    console.log(props);
   };
 
   // Prevent anchor tags from appearing in text as a string of the anchor tag
@@ -131,7 +132,8 @@ const SpecificCoin = (props: any) => {
         </div>
       )}
       <br />
-      {companyHoldings && (
+      {props.error ? <div className="error">{props.error}</div> : null}
+      {companyHoldings ? (
         <table id="company-holdings-table">
           <thead>
             <tr>
@@ -165,7 +167,7 @@ const SpecificCoin = (props: any) => {
             </>
           ))}
         </table>
-      )}
+      ) : null}
       <br />
     </>
   );
@@ -174,6 +176,7 @@ const SpecificCoin = (props: any) => {
 const mapStateToProps = (state: any) => ({
   specificCoinData: state.specificCoinData,
   loading: state.loading,
+  error: state.error,
 });
 
 export default connect(mapStateToProps, {

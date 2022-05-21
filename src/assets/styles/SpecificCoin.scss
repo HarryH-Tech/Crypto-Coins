@@ -96,3 +96,7 @@
         background-color: rgba(0, 0, 0, 0.277);
     }
 }
+
+.error {
+    @include error-container;
+}

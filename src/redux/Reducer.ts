@@ -19,15 +19,22 @@ const rootReducer = (state: any, action: any) => {
         allCryptos: action.payload,
       };
 
+    case actionTypes.EXPLORE_BLOCKCHAIN:
+      return {
+        ...state,
+        blockchainInfo: action.payload,
+      };
+
     case actionTypes.SET_LOADING:
       return {
         ...state,
         loading: action.payload,
       };
-    case actionTypes.EXPLORE_BLOCKCHAIN:
+
+    case actionTypes.SET_ERROR:
       return {
         ...state,
-        blockchainInfo: action.payload,
+        error: action.payload,
       };
   }
   return state;
