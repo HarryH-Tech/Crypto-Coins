@@ -21,6 +21,9 @@ function Header(props: any) {
     window.addEventListener("resize", handleResize);
   }, []);
 
+  // if (window.innerWidth < 500) {
+  //   props.toggleSidebarMenu(props.sidebarMenuShowing);
+  // }
   return (
     <>
       <div id="navbar" role="navbar">
@@ -29,68 +32,53 @@ function Header(props: any) {
         </Link>
 
         <div
-          className="burger-container"
+          className={`${
+            props.sidebarMenuShowing
+              ? "burger-container"
+              : "shrunken-burger-container"
+          }`}
           onClick={(e) => props.toggleSidebarMenu(props.sidebarMenuShowing)}
         >
-          <div className="bar1"></div>
-          <div className="bar2"></div>
-          <div className="bar3"></div>
+          <div
+            className={`${props.sidebarMenuShowing ? "bar1" : "shrunken-bar1"}`}
+          ></div>
+          <div
+            className={`${props.sidebarMenuShowing ? "bar2" : "shrunken-bar2"}`}
+          ></div>
+          <div
+            className={`${props.sidebarMenuShowing ? "bar3" : "shrunken-bar3"}`}
+          ></div>
         </div>
-        {!props.sidebarMenuShowing && (
-          <ul className="links-container">
-            <li>
-              <Link
-                to="/specific-coin"
-                className="link"
-                role="specific-coin-link"
-              >
-                Specific Coin
-              </Link>
-            </li>
-            <li>
-              <Link to="/all-coins" className="link" role="all-coins-link">
-                Top 50 Coins
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/crypto-history"
-                className="link"
-                role="crypto-history-link"
-              >
-                Crypto History
-              </Link>
-            </li>
-          </ul>
-        )}
 
-        {props.sidebarMenuShowing && (
-          <ul className="mobile-links-container">
-            <li>
-              <Link
-                to="/specific-coin"
-                className="link"
-                role="specific-coin-link"
-              >
-                Specific Coin
-              </Link>
-            </li>
-            <li>
-              <Link to="/all-coins" className="link" role="all-coins-link">
-                Top 50 Coins
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/crypto-history"
-                className="link"
-                role="crypto-history-link"
-              >
-                Crypto History
-              </Link>
-            </li>
-          </ul>
-        )}
+        <ul
+          className={` ${
+            props.sidebarMenuShowing ? "links-container" : "show-mobile-menu"
+          }`}
+        >
+          <li>
+            <Link
+              to="/specific-coin"
+              className="link"
+              role="specific-coin-link"
+            >
+              Specific Coin
+            </Link>
+          </li>
+          <li>
+            <Link to="/all-coins" className="link" role="all-coins-link">
+              Top 50 Coins
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/crypto-history"
+              className="link"
+              role="crypto-history-link"
+            >
+              Crypto History
+            </Link>
+          </li>
+        </ul>
       </div>
     </>
   );

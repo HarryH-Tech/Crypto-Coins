@@ -4,11 +4,10 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import rootReducer from "./Reducer";
 
-const initialState = {
+const initialState: InitialState = {
   sidebarMenuShowing: true,
   specificCoinData: "",
-  allCryptos: "",
-  blockchainInfo: "",
+  allCryptos: [],
   loading: false,
   error: "",
 };

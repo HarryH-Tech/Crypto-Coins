@@ -37,18 +37,30 @@
 
 // Media Queries
 @media screen and (max-width: 400px) {
-
-
+    .links-container {
+        display: none !important;
+    }
 
     .burger-container {
         display: inline-block;
         cursor: pointer;
     }
 
+
     .bar1,
     .bar2,
     .bar3 {
         width: 35px;
+        height: 5px;
+        background-color: white;
+        margin: 6px 0;
+        transition: 0.4s;
+    }
+
+    .shrunken-bar1,
+    .shrunken-bar2,
+    .shrunken-bar3 {
+        width: 15px;
         height: 5px;
         background-color: white;
         margin: 6px 0;
@@ -72,5 +84,25 @@
             rotate(45deg) translate(-8px, -8px);
         transform:
             rotate(45deg) translate(-8px, -8px);
+    }
+
+
+
+    .show-mobile-menu {
+        display: block;
+
+        li {
+            display: inline-block;
+            margin: 0.6rem auto auto 1rem;
+
+            a {
+                color: white;
+            }
+
+            :hover {
+                color: rgb(121, 197, 255);
+                transition: 0.2s ease-in-out;
+            }
+        }
     }
 }

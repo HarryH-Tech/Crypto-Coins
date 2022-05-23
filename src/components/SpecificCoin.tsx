@@ -32,19 +32,37 @@ const SpecificCoin = (props: any) => {
     <>
       <div id="select-box-container">
         <select onChange={handleSelection} id="select-element">
-          <option value="bitcoin">Bitcoin</option>
-          <option value="ethereum">Ethereum</option>
-          <option value="ripple">XRP</option>
-          <option value="tether">Tether</option>
-          <option value="cardano">Cardano</option>
-          <option value="polkadot">Polkadot</option>
-          <option value="stellar">Stellar</option>
-          <option value="dogecoin">Dogecoin</option>
-          <option value="solana">Solana</option>
+          <option key={uuid()} value="bitcoin">
+            Bitcoin
+          </option>
+          <option key={uuid()} value="ethereum">
+            Ethereum
+          </option>
+          <option key={uuid()} value="ripple">
+            XRP
+          </option>
+          <option key={uuid()} value="tether">
+            Tether
+          </option>
+          <option key={uuid()} value="cardano">
+            Cardano
+          </option>
+          <option key={uuid()} value="polkadot">
+            Polkadot
+          </option>
+          <option key={uuid()} value="stellar">
+            Stellar
+          </option>
+          <option key={uuid()} value="dogecoin">
+            Dogecoin
+          </option>
+          <option key={uuid()} value="solana">
+            Solana
+          </option>
         </select>
       </div>
 
-      {props.loading && <Loading />}
+      {props.loading ? <Loading /> : null}
       {specificCoin && (
         <div id="data-container">
           <h2 id="coin-name">{specificCoin.data.name}</h2>
@@ -147,8 +165,8 @@ const SpecificCoin = (props: any) => {
             <>
               <tbody key={id}>
                 <tr>
-                  <td key={company.name}>{company.name}</td>
-                  <td key={company.total_current_value_usd}>
+                  <td key={uuid()}>{company.name}</td>
+                  <td key={uuid()}>
                     {
                       <NumberFormat
                         displayType="text"
@@ -158,10 +176,8 @@ const SpecificCoin = (props: any) => {
                       />
                     }
                   </td>
-                  <td key={company.percentage_of_total_supply}>
-                    {company.percentage_of_total_supply}
-                  </td>
-                  <td key={company.country}>{company.country}</td>
+                  <td key={uuid()}>{company.percentage_of_total_supply}</td>
+                  <td key={uuid()}>{company.country}</td>
                 </tr>
               </tbody>
             </>

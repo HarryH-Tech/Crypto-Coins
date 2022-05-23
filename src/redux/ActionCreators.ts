@@ -11,17 +11,10 @@ const {
 export const toggleSidebarMenu =
   (sidebarMenuStatus: boolean) =>
   async (dispatch: (arg0: { type: string; payload: any }) => void) => {
-    try {
-      dispatch({
-        type: TOGGLE_SIDEBAR_MENU,
-        payload: !sidebarMenuStatus,
-      });
-    } catch (error) {
-      dispatch({
-        type: SET_ERROR,
-        payload: console.log(error),
-      });
-    }
+    dispatch({
+      type: TOGGLE_SIDEBAR_MENU,
+      payload: !sidebarMenuStatus,
+    });
   };
 
 export const fetchSpecificCoinData =
