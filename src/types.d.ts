@@ -4,15 +4,19 @@ interface ISpecificCoinData {
   genesis_date: string;
 }
 
-type GetSpecificCryptoAction = {
+interface GetSpecificCryptoAction {
   type: string;
   cryptoName: string;
-};
+}
 
-type InitialState = {
+interface InitialState {
   sidebarMenuShowing: Boolean;
   specificCoinData: String;
   allCryptos: [];
   loading: false;
   error: String;
-};
+}
+
+interface ISpecificCoinData {
+  ghashing_algorithm: string;
+}

@@ -11,7 +11,6 @@ const id: string = uuid();
 const SpecificCoin = (props: any) => {
   const handleSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     props.fetchSpecificCoinData(event.target.value);
-    console.log(props);
   };
 
   // Prevent anchor tags from appearing in text as a string of the anchor tag

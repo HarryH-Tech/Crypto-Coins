@@ -23,9 +23,10 @@ interface CoinComponentProps {
 }
 
 const AllCoins: FC<AllCoinProps> = (props: AllCoinProps) => {
+  const { getAllCryptos } = props;
   useEffect(() => {
-    props.getAllCryptos();
-  }, []);
+    getAllCryptos();
+  }, [getAllCryptos]);
 
   const coin: FC<CoinComponentProps> = (props: CoinComponentProps) => {
     const {
@@ -93,7 +94,7 @@ const AllCoins: FC<AllCoinProps> = (props: AllCoinProps) => {
     <>
       {props.allCryptos ? (
         <>
-          <h1 id="title">All Coins</h1>
+          <h1 id="title">Top 50 Coins</h1>
 
           <div id="table-container">
             <Pagination

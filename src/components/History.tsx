@@ -16,6 +16,7 @@ function History() {
         <a
           href="https://nakamotoinstitute.org/static/docs/computer-systems-by-mutually-suspicious-groups.pdf"
           target="_blank"
+          rel="noreferrer"
         >
           Computer Systems Established, Maintained, and Trusted by Mutually
           Suspicious Groups".{" "}
@@ -34,6 +35,7 @@ function History() {
         <a
           href="https://www.investopedia.com/terms/m/merkle-tree.asp#:~:text=A%20Merkle%20tree%20is%20a,as%20%22binary%20hash%20trees.%22"
           target="_blank"
+          rel="noreferrer"
         >
           {" "}
           Merkle Trees
@@ -55,7 +57,11 @@ function History() {
         One of the major innovations relating to blockchain technology was the
         concept of the "smart contract" embodied within a second generation
         blockchain system known as{" "}
-        <a href="https://en.wikipedia.org/wiki/Ethereum" target="_blank">
+        <a
+          href="https://en.wikipedia.org/wiki/Ethereum"
+          target="_blank"
+          rel="noreferrer"
+        >
           Ethereum
         </a>
         .
@@ -70,6 +76,7 @@ function History() {
         <a
           href="https://hbr.org/2017/02/a-brief-history-of-blockchain"
           target="_blank"
+          rel="noreferrer"
         >
           here
         </a>

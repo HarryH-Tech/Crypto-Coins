@@ -1,29 +1,9 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../assets/styles/Header.scss";
 import { connect } from "react-redux";
 import { toggleSidebarMenu } from "../redux/ActionCreators";
 
 function Header(props: any) {
-  const [dimensions, setDimensions] = useState({
-    height: window.innerHeight,
-    width: window.innerWidth,
-  });
-
-  useEffect(() => {
-    function handleResize() {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth,
-      });
-    }
-
-    window.addEventListener("resize", handleResize);
-  }, []);
-
-  // if (window.innerWidth < 500) {
-  //   props.toggleSidebarMenu(props.sidebarMenuShowing);
-  // }
   return (
     <>
       <div id="navbar" role="navbar">
@@ -56,26 +36,18 @@ function Header(props: any) {
           }`}
         >
           <li>
-            <Link
-              to="/specific-coin"
-              className="link"
-              role="specific-coin-link"
-            >
+            <Link to="/specific-coin" className="link">
               Specific Coin
             </Link>
           </li>
           <li>
-            <Link to="/all-coins" className="link" role="all-coins-link">
+            <Link to="/all-coins" className="link">
               Top 50 Coins
             </Link>
           </li>
           <li>
-            <Link
-              to="/crypto-history"
-              className="link"
-              role="crypto-history-link"
-            >
-              Crypto History
+            <Link to="/crypto-history" className="link">
+              Blockchain History
             </Link>
           </li>
         </ul>

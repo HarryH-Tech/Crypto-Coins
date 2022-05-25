@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import * as ActionTypes from "./ActionTypes";
 const {
   TOGGLE_SIDEBAR_MENU,
@@ -30,25 +30,28 @@ export const fetchSpecificCoinData =
     });
 
     try {
-      const coinDataRes = await axios
-        .get(`https://api.coingecko.com/api/v3/coins/${cryptoName}`)
-        .catch(() => {
-          dispatch({
-            type: SET_ERROR,
-            payload: "Sorry there was an error, please try again later.",
-          });
-        });
-      const companyHoldingsRes = await axios
-        .get(
-          `https://api.coingecko.com/api/v3/companies/public_treasury/${cryptoName}`
-        )
-        .catch(() => {
-          dispatch({
-            type: SET_ERROR,
-            payload: "Company holding information not available.",
-          });
-        });
-
+      const coinDataRes = <AxiosResponse>(
+        await axios
+          .get(`https://api.coingecko.com/api/v3/coins/${cryptoName}`)
+          .catch(() => {
+            dispatch({
+              type: SET_ERROR,
+              payload: "Sorry there was an error, please try again later.",
+            });
+          })
+      );
+      const companyHoldingsRes = <AxiosResponse>(
+        await axios
+          .get(
+            `https://api.coingecko.com/api/v3/companies/public_treasury/${cryptoName}`
+          )
+          .catch(() => {
+            dispatch({
+              type: SET_ERROR,
+              payload: "Company holding information not available.",
+            });
+          })
+      );
       dispatch({
         type: SET_LOADING,
         payload: false,
@@ -77,16 +80,19 @@ export const getAllCryptos =
       payload: true,
     });
     try {
-      const res = await axios.get(
-        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=50&page=1&sparkline=false"
+      const allCryptosResponse = <AxiosResponse>(
+        await axios
+          .get(
+            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=50&page=1&sparkline=false"
+          )
+          .catch(() => {
+            dispatch({
+              type: SET_ERROR,
+              payload:
+                "Sorry, there was a problem retrieving the data, please try again.",
+            });
+          })
       );
-      // .catch(() => {
-      //   dispatch({
-      //     type: SET_ERROR,
-      //     payload:
-      //       "Sorry, there was a problem retrieving the data, please try again.",
-      //   });
-      // });
 
       dispatch({
         type: SET_LOADING,
@@ -94,12 +100,13 @@ export const getAllCryptos =
       });
       dispatch({
         type: GET_ALL_CRYPTOS,
-        payload: res.data,
+        payload: allCryptosResponse.data,
       });
     } catch (error) {
       dispatch({
         type: SET_ERROR,
-        payload: console.log(error),
+        payload:
+          "Sorry, there was a problem retrieving the data, please try again.",
       });
       dispatch({
         type: SET_LOADING,
