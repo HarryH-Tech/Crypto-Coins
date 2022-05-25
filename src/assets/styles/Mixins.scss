@@ -37,3 +37,14 @@
     border-collapse: collapse;
     padding: 0.3rem;
 }
+
+@mixin error-container {
+    border: 2px solid rgb(255, 84, 84);
+    border-radius: 0.4rem;
+    background-color: rgb(255, 161, 161);
+    width: 50%;
+    margin: 0.8rem auto;
+    padding: 0.5rem;
+
+    text-align: center;
+}

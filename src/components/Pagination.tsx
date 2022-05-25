@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "../styles/Pagination.scss";
+import "../assets/styles/Pagination.scss";
 
-function Pagination({ data, RenderComponent, pageLimit, dataLimit }: any) {
+function Pagination({ data, TableRow, pageLimit, dataLimit }: any) {
   const [currentPage, setCurrentPage] = useState(1);
 
   // 2 variables below used to map through and render data at the correct rate
@@ -38,29 +38,27 @@ function Pagination({ data, RenderComponent, pageLimit, dataLimit }: any) {
             market cap in descending order.
           </caption>
 
-          <div className="dataContainer">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>All Time High</th>
-                <th>Current Price</th>
-                <th>
-                  Max Supply <br />
-                  (if applicable)
-                </th>
-                <th>Market Cap</th>
-                <th>Fully Diluted Valuation</th>
-              </tr>
-            </thead>
-            {/* show the cryptos and their corresponding
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>All Time High</th>
+              <th>Current Price</th>
+              <th>
+                Max Supply <br />
+                (if applicable)
+              </th>
+              <th>Market Cap</th>
+              <th>Fully Diluted Valuation</th>
+            </tr>
+          </thead>
+          {/* show the cryptos and their corresponding
              info, 10 at a time */}
+          <tbody>
             {data &&
               data
                 .slice(startIndex, endIndex)
-                .map((d: any, idx: any) => (
-                  <RenderComponent key={idx} data={d} />
-                ))}
-          </div>
+                .map((d: any, idx: any) => <TableRow key={idx} data={d} />)}
+          </tbody>
         </table>
         <br />
 

@@ -6,23 +6,29 @@
     text-decoration: underline;
 }
 
-#all-coins-table {
-    @include table-mixin;
 
-    caption {
-        caption-side: top;
-        text-align: center;
+#table-container {
+    overflow-x: scroll;
+
+    #all-coins-table {
+        @include table-mixin;
+        width: 100%;
+
+        caption {
+            caption-side: top;
+            text-align: center;
+        }
+
+        th,
+        td {
+            @include td-mixin;
+        }
+
+        tr:hover {
+            background-color: rgba(0, 0, 0, 0.277);
+        }
+
     }
-
-    th,
-    td {
-        @include td-mixin;
-    }
-
-    tr:hover {
-        background-color: rgba(0, 0, 0, 0.277);
-    }
-
 }
 
 

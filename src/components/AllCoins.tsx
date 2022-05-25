@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, FC } from "react";
 import { connect } from "react-redux";
 import { getAllCryptos } from "../redux/ActionCreators";
 import NumberFormat from "react-number-format";
@@ -6,12 +6,29 @@ import NumberFormat from "react-number-format";
 import Pagination from "./Pagination";
 import Loading from "./Loading";
 
-function AllCoins(props: any) {
-  useEffect(() => {
-    props.getAllCryptos();
-  }, []);
+interface AllCoinProps {
+  allCryptos: [];
+  getAllCryptos: Function;
+}
 
-  function coin(props: any) {
+interface CoinComponentProps {
+  data: {
+    name: string;
+    ath: string;
+    current_price: string;
+    max_supply: string;
+    market_cap: string;
+    fully_diluted_valuation: string;
+  };
+}
+
+const AllCoins: FC<AllCoinProps> = (props: AllCoinProps) => {
+  const { getAllCryptos } = props;
+  useEffect(() => {
+    getAllCryptos();
+  }, [getAllCryptos]);
+
+  const coin: FC<CoinComponentProps> = (props: CoinComponentProps) => {
     const {
       name,
       ath,
@@ -33,7 +50,6 @@ function AllCoins(props: any) {
             />
           </td>
           <td>
-            {" "}
             <NumberFormat
               value={current_price}
               displayType="text"
@@ -52,7 +68,6 @@ function AllCoins(props: any) {
             )}
           </td>
           <td>
-            {" "}
             <NumberFormat
               value={market_cap}
               displayType="text"
@@ -73,28 +88,30 @@ function AllCoins(props: any) {
         </tr>
       </>
     );
-  }
+  };
 
   return (
     <>
       {props.allCryptos ? (
         <>
-          <h1 id="title">All Coins</h1>
+          <h1 id="title">Top 50 Coins</h1>
 
-          <Pagination
-            data={props.allCryptos}
-            RenderComponent={coin}
-            title="Coins"
-            pageLimit={5}
-            dataLimit={10}
-          />
+          <div id="table-container">
+            <Pagination
+              data={props.allCryptos}
+              TableRow={coin}
+              title="Coins"
+              pageLimit={5}
+              dataLimit={10}
+            />
+          </div>
         </>
       ) : (
         <Loading />
       )}
     </>
   );
-}
+};
 
 const mapStateToProps = (state: any) => ({
   allCryptos: state.allCryptos,

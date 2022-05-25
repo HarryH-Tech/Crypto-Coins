@@ -1,10 +1,12 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { connect } from "react-redux";
-import "../styles/SpecificCoin.scss";
+import "../assets/styles/SpecificCoin.scss";
 import NumberFormat from "react-number-format";
+import { v4 as uuid } from "uuid";
 import Loading from "./Loading";
-
 import { fetchSpecificCoinData } from "../redux/ActionCreators";
+
+const id: string = uuid();
 
 const SpecificCoin = (props: any) => {
   const handleSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -20,7 +22,6 @@ const SpecificCoin = (props: any) => {
 
   useEffect(() => {
     props.fetchSpecificCoinData("bitcoin");
-    console.log(props);
   }, []);
 
   const specificCoin = props.specificCoinData.coinDataRes;
@@ -30,19 +31,37 @@ const SpecificCoin = (props: any) => {
     <>
       <div id="select-box-container">
         <select onChange={handleSelection} id="select-element">
-          <option value="bitcoin">Bitcoin</option>
-          <option value="ethereum">Ethereum</option>
-          <option value="ripple">XRP</option>
-          <option value="tether">Tether</option>
-          <option value="cardano">Cardano</option>
-          <option value="polkadot">Polkadot</option>
-          <option value="stellar">Stellar</option>
-          <option value="dogecoin">Dogecoin</option>
-          <option value="solana">Solana</option>
+          <option key={uuid()} value="bitcoin">
+            Bitcoin
+          </option>
+          <option key={uuid()} value="ethereum">
+            Ethereum
+          </option>
+          <option key={uuid()} value="ripple">
+            XRP
+          </option>
+          <option key={uuid()} value="tether">
+            Tether
+          </option>
+          <option key={uuid()} value="cardano">
+            Cardano
+          </option>
+          <option key={uuid()} value="polkadot">
+            Polkadot
+          </option>
+          <option key={uuid()} value="stellar">
+            Stellar
+          </option>
+          <option key={uuid()} value="dogecoin">
+            Dogecoin
+          </option>
+          <option key={uuid()} value="solana">
+            Solana
+          </option>
         </select>
       </div>
 
-      {props.loading && <Loading />}
+      {props.loading ? <Loading /> : null}
       {specificCoin && (
         <div id="data-container">
           <h2 id="coin-name">{specificCoin.data.name}</h2>
@@ -130,7 +149,8 @@ const SpecificCoin = (props: any) => {
         </div>
       )}
       <br />
-      {companyHoldings && (
+      {props.error ? <div className="error">{props.error}</div> : null}
+      {companyHoldings ? (
         <table id="company-holdings-table">
           <thead>
             <tr>
@@ -142,10 +162,10 @@ const SpecificCoin = (props: any) => {
           </thead>
           {companyHoldings.data.companies.map((company: any) => (
             <>
-              <tbody>
+              <tbody key={id}>
                 <tr>
-                  <td key={company.name}>{company.name}</td>
-                  <td key={company.total_current_value_usd}>
+                  <td key={uuid()}>{company.name}</td>
+                  <td key={uuid()}>
                     {
                       <NumberFormat
                         displayType="text"
@@ -155,16 +175,14 @@ const SpecificCoin = (props: any) => {
                       />
                     }
                   </td>
-                  <td key={company.percentage_of_total_supply}>
-                    {company.percentage_of_total_supply}
-                  </td>
-                  <td key={company.country}>{company.country}</td>
+                  <td key={uuid()}>{company.percentage_of_total_supply}</td>
+                  <td key={uuid()}>{company.country}</td>
                 </tr>
               </tbody>
             </>
           ))}
         </table>
-      )}
+      ) : null}
       <br />
     </>
   );
@@ -173,6 +191,7 @@ const SpecificCoin = (props: any) => {
 const mapStateToProps = (state: any) => ({
   specificCoinData: state.specificCoinData,
   loading: state.loading,
+  error: state.error,
 });
 
 export default connect(mapStateToProps, {
